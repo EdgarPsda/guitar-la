@@ -2,9 +2,13 @@
 import {
     Links,
     LiveReload,
-    Meta
+    Meta,
+    Outlet,
+    Scripts
 } from '@remix-run/react'
-import styles from './styles/index.css'
+import styles from '~/styles/index.css'
+import Header from '~/components/header'
+import Footer from '~/components/footer'
 
 export function meta() {
     return ([
@@ -34,7 +38,7 @@ export function links() {
         {
             rel: 'preconnect',
             href: 'https://fonts.gstatic.com',
-            crossorigin: "true"
+            crossOrigin: "true"
         },
         {
             rel: 'stylesheet',
@@ -50,7 +54,7 @@ export function links() {
 export default function App() {
     return (
         <Document>
-            <h1>Hola Mundo</h1>
+            <Outlet></Outlet>
         </Document>
     )
 }
@@ -63,8 +67,11 @@ function Document({ children }) {
                 <Links></Links>
             </head>
             <body>
-                <LiveReload></LiveReload>
+                <Header></Header>
                 {children}
+                <Footer></Footer>
+                <Scripts></Scripts>
+                <LiveReload></LiveReload>
             </body>
         </html>
     )
